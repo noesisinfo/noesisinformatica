@@ -5,9 +5,9 @@
     <groupId>com.noesisinformatica</groupId>
     <artifactId>noesisinformatica</artifactId>
     <version>1.0.0</version>
+    <packaging>pom</packaging>
 
     <!-- Organisation Information -->
-
     <organization>
         <name>Noesis Informatica</name>
         <url>http://www.noesisinformatica.com</url>
@@ -89,11 +89,11 @@
 
     <distributionManagement>
         <repository>
-            <id>termlogic.releases</id>
+            <id>noesisinformatica.releases</id>
             <url>dav:https://repository-noesisinformatica.forge.cloudbees.com/release/</url>
         </repository>
         <snapshotRepository>
-            <id>termlogic.snapshots</id>
+            <id>noesisinformatica.snapshots</id>
             <url>dav:https://repository-noesisinformatica.forge.cloudbees.com/snapshot</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
@@ -165,9 +165,6 @@
                 <version>2.4</version>
                 <configuration>
                     <archive>
-                        <manifestFile>
-                            ${project.build.outputDirectory}/META-INF/MANIFEST.MF
-                        </manifestFile>
                         <manifestEntries>
                             <Build-Version>${project.version}</Build-Version>
                             <Build-Number>${changeSet}</Build-Number>

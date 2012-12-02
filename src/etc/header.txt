@@ -1,0 +1,17 @@
+Copyright (C) ${year} ${company}. All Rights Reserved
+
+Licensed under the Noesis Informatica License;
+you may not use this file except in compliance with the License.
+
+The License Agreement does not in any way grant you any rights over the
+Intellectual Property of the SOFTWARE PRODUCT. YOU acknowledge that the
+ownership of the Intellectual Property at all times rest with ${company}.
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Contact: ${email}
+Website: ${weburl}
