@@ -242,7 +242,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <inherited>false</inherited>
+                <inherited>true</inherited>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
                 <executions>
