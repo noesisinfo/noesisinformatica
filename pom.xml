@@ -326,6 +326,21 @@
                             </rules>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>enforce-no-snapshots</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireReleaseDeps>
+                                    <message>WARNING...You are deploying an artefact that has Snapshot dependencies!</message>
+                                </requireReleaseDeps>
+                            </rules>
+                            <fail>false</fail>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
