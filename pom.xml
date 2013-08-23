@@ -109,11 +109,6 @@
     <build>
         <!-- Extension to add wagon-webdav plugin -->
         <extensions>
-            <!-- <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-webdav</artifactId>
-                <version>1.0-beta-2</version>
-            </extension> -->
             <extension>
             	<groupId>org.apache.maven.wagon</groupId>
             	<artifactId>wagon-webdav-jackrabbit</artifactId>
@@ -302,7 +297,7 @@
                         <configuration>
                             <rules>
                                 <requireBackwardCompatibility implementation="org.semver.enforcer.RequireBackwardCompatibility">
-                                    <compatibilityType>BACKWARD_COMPATIBLE_IMPLEMENTER</compatibilityType>
+                                    <compatibilityType>${compatibility.level}</compatibilityType>
                                 </requireBackwardCompatibility>
                                 <requireSemanticVersioningConformance implementation="org.semver.enforcer.RequireSemanticVersioningConformance" />
                             </rules>
@@ -377,4 +372,24 @@
             </plugin>
         </plugins>
     </reporting>
+    <profiles>
+        <profile>
+            <id>noesis-dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <compatibility.level>BACKWARD_COMPATIBLE_USER</compatibility.level>
+            </properties>
+        </profile>
+        <profile>
+            <id>noesis-prod</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <compatibility.level>BACKWARD_COMPATIBLE_IMPLEMENTER</compatibility.level>
+            </properties>
+        </profile>
+    </profiles>
 </project>
