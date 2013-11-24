@@ -38,6 +38,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <buildnumber.plugin.phase>validate</buildnumber.plugin.phase>
     </properties>
 
     <repositories>
@@ -226,7 +227,7 @@
                 <version>1.2</version>
                 <executions>
                     <execution>
-                        <phase>generate-resources</phase>
+                        <phase>${buildnumber.plugin.phase}</phase>
                         <goals>
                             <goal>hgchangeset</goal>
                         </goals>
@@ -301,6 +302,7 @@
                                 </requireBackwardCompatibility>
                                 <requireSemanticVersioningConformance implementation="org.semver.enforcer.RequireSemanticVersioningConformance" />
                             </rules>
+                            <fail>${strict.semver.conformance}</fail>
                         </configuration>
                     </execution>
                     <execution>
@@ -380,6 +382,7 @@
             </activation>
             <properties>
                 <compatibility.level>BACKWARD_COMPATIBLE_USER</compatibility.level>
+                <strict.semver.conformance>false</strict.semver.conformance>
             </properties>
         </profile>
         <profile>
@@ -389,6 +392,7 @@
             </activation>
             <properties>
                 <compatibility.level>BACKWARD_COMPATIBLE_IMPLEMENTER</compatibility.level>
+                <strict.semver.conformance>true</strict.semver.conformance>
             </properties>
         </profile>
     </profiles>
