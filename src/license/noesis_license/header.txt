@@ -1,0 +1,20 @@
+All right reserved.
+
+Licensed under the ${application.name} License;
+you may not use this file except in compliance with the License.
+
+Access to the source code does not represent waiver of the terms of the
+license. This code is NOT open source. You are not permitted to copy this code!
+
+The License Agreement does not in any way grant you any rights over the
+Intellectual Property of the SOFTWARE PRODUCT. YOU acknowledge that the
+ownership of the Intellectual Property at all times rest with ${project.organization.name}.
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Contact: info@noesisinformatica.com
+Website: ${project.organization.url}

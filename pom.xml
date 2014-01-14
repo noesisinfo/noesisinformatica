@@ -28,6 +28,7 @@
             <properties />
         </developer>
     </developers>
+    <inceptionYear>2012</inceptionYear>
 
     <scm>
         <connection>scm:hg:file://${basedir}</connection>
@@ -39,6 +40,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <buildnumber.plugin.phase>validate</buildnumber.plugin.phase>
+        <application.name>${project.groupId}:${project.artifactId}</application.name>
     </properties>
 
     <repositories>
@@ -97,12 +99,12 @@
 
     <distributionManagement>
         <repository>
-            <id>noesisinformatica.releases</id>
-            <url>dav:https://repository-noesisinformatica.forge.cloudbees.com/release/</url>
+            <id>noesisinformatica.bb.releases</id>
+            <url>dav:https://noesisinformatica@bitbucket.org/noesisinformatica/releaserepo</url>
         </repository>
         <snapshotRepository>
-            <id>noesisinformatica.snapshots</id>
-            <url>dav:https://repository-noesisinformatica.forge.cloudbees.com/snapshot</url>
+            <id>noesisinformatica.bb.snapshots</id>
+            <url>dav:https://noesisinformatica@bitbucket.org/noesisinformatica/snapshotrepo</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
@@ -139,55 +141,12 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <encoding>utf-8</encoding>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <inherited>false</inherited>
-                    <groupId>com.mycila.maven-license-plugin</groupId>
-                    <artifactId>maven-license-plugin</artifactId>
-                    <version>1.9.0</version>
-                    <configuration>
-                        <header>${basedir}/src/etc/header.txt</header>
-                        <failIfMissing>true</failIfMissing>
-                        <aggregate>true</aggregate>
-                        <properties>
-                            <year>${project.inceptionYear} - 2012</year>
-                            <email>info@noesisinformatica.com</email>
-                            <weburl>${project.organization.url}</weburl>
-                            <company>${project.organization.name}</company>
-                        </properties>
-                        <useDefaultExcludes>true</useDefaultExcludes>
-                        <failIfMissing>false</failIfMissing>
-                        <strictCheck>true</strictCheck>
-                        <excludes>
-                            <exclude>**/src/test/resources/**</exclude>
-                            <exclude>target/**</exclude>
-                            <exclude>.idea/**</exclude>
-                            <exclude>**/**/osgi.bnd</exclude>
-                            <exclude>**/**/*.txt</exclude>
-                            <exclude>**/**/*.TXT</exclude>
-                            <exclude>**/**/*.g</exclude>
-                            <exclude>**/**/*.properties</exclude>
-                            <exclude>**/**/*.html</exclude>
-                            <exclude>**/**/*.hgignore</exclude>
-                            <exclude>**/**/*.hgtags</exclude>
-                            <exclude>**/**/bundle-context.xml</exclude>
-                            <exclude>**/**/bundle-context-osgi.xml</exclude>
-                        </excludes>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>check-headers</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>format</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -253,20 +212,6 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
-            </plugin>
-            <plugin>
-                <inherited>false</inherited>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>check-headers</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -343,6 +288,84 @@
                                 </requireReleaseDeps>
                             </rules>
                             <fail>false</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.5</version>
+                <configuration>
+                    <licenseResolver>file://${project.build.directory}/license</licenseResolver>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>update-project-license</id>
+                        <goals>
+                            <goal>update-project-license</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <licenseName>noesis_license</licenseName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>update-file-header</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <licenseName>noesis_license</licenseName>
+                            <roots>
+                                <root>${project.basedir}/src</root>
+                                <root>${project.basedir}/test</root>
+                                <root>${project.basedir}/grails-app</root>
+                            </roots>
+                            <extraExtensions>
+                                <gsp>xml</gsp>
+                            </extraExtensions>
+                            <!-- Disable add after package, since it makes license appear in middle of groovy classes -->
+                            <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>download-licenses</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>download-licenses</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>add-third-party</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>aggregate-add-third-party</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-license-files</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>utf-8</encoding>
+                            <outputDirectory>${project.build.directory}/license</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/license</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                 </executions>

@@ -1,0 +1,109 @@
+License of Bundled Libraries
+
+   com.noesisinformatica:noesisinformatica uses a large number of open source libraries. All
+   of these libraries are included in the lib folder of the application
+   and are covered by their respective licenses. com.noesisinformatica:noesisinformatica
+   license and copyright does not cover these libraries. Please refer to
+   the licenses for appropriate information.
+
+License for com.noesisinformatica:noesisinformatica - 1.2.0-SNAPSHOT
+
+1. Definitions.
+
+"License" shall mean the terms and conditions for use, reproduction,
+and distribution as defined by the following sections of this document.
+
+"Licensor" shall mean the copyright owner or entity authorized by the
+copyright owner that is granting the License.
+
+"You" (or "Your") shall mean an individual or Legal Entity exercising
+permissions granted by this License.
+
+"Source" form shall mean the preferred form for making modifications,
+including but not limited to software source code, documentation
+source, and configuration files.
+
+"Object" form shall mean any form resulting from mechanical
+transformation or translation of a Source form, including but not
+limited to compiled object code, generated documentation, and
+conversions to other media types.
+
+"Work" shall mean the work of authorship, whether in Source or Object
+form, made available under the License, as indicated by a copyright
+notice that is included in or attached to the work.
+
+"Software" shall mean the Work and its representation in Source or
+Object forms as described above. This license agreement also refers to
+com.noesisinformatica:noesisinformatica as Software.
+
+"Derivative Works" shall mean any work, whether in Source or Object
+form, that is based on (or derived from) the Work and for which the
+editorial revisions, annotations, elaborations, or other modifications
+represent, as a whole, an original work of authorship. For the purposes
+of this License, Derivative Works shall not include works that remain
+separable from, or merely link (or bind by name) to the interfaces of,
+the Work and Derivative Works thereof.
+
+2. Terms of License
+
+This License entitles you to use the Software according to the terms
+of this license. The use of the Software for any other purposes is not allowed
+and will need to be agreed in writing with the Licensor (Noesis
+Informatica Ltd). This License Agreement does not in any way grant you
+any rights over the Intellectual Property of the com.noesisinformatica:noesisinformatica.
+You acknowledge that the ownership of the Intellectual Property at all
+times rest with the Licensor (Noesis Informatica Ltd). By using
+com.noesisinformatica:noesisinformatica, You also agree to the following terms:
+  * You may not provide or make com.noesisinformatica:noesisinformatica available by any
+    means to any third party without prior written consent of the
+    Licensor. You undertake to take such steps as are necessary in
+    order to protect com.noesisinformatica:noesisinformatica against unauthorized use.
+  * You may not alter, merge, modify, adapt or translate the Software,
+    or decompile, reverse engineer, disassemble, or otherwise reduce
+    com.noesisinformatica:noesisinformatica to a human-perceivable form.
+  * You may not sell, rent, lease, sublicense, transfer, resell for
+    profit or otherwise distribute the Software or any part thereof.
+  * You shall not attempt to extract or download the SNOMED CT content
+    exposed by the Software, using any automated or semi-automated
+    means or methods.
+  * You may not modify the Software or create derivative works based
+    upon the Software.
+  * You may not reveal or use com.noesisinformatica:noesisinformatica design features to
+    create or augment derivative works, directly or indirectly.
+  * You may not remove or obscure any copyright and trademark notices
+    relating to the Software.
+  * You allow the Software to use local browser cookies and remote
+    caches to collect anonymous metrics to improve performance and
+    search rankings.
+  * You allow the Software to collect store your email address for
+    purposes of maintaining and establishing authentication. Your
+    personal details will not be shared with any other 3rd parties.
+
+3. Trademarks. This License does not grant permission to use the trade
+names, trademarks, service marks, or product names of the Licensor,
+except as required for reasonable and customary use in describing the
+origin of the Work and reproducing the content of the NOTICE file.
+
+4. Disclaimer of Warranty. Unless required by applicable law or agreed
+to in writing, Licensor provides the Work (and each Contributor
+provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied, including, without
+limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT,
+MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely
+responsible for determining the appropriateness of using or
+redistributing the Work and assume any risks associated with Your
+exercise of permissions under this License.
+
+5. Limitation of Liability. In no event and under no legal theory,
+whether in tort (including negligence), contract, or otherwise, unless
+required by applicable law (such as deliberate and grossly negligent
+acts) or agreed to in writing, shall any Contributor be liable to You
+for damages, including any direct, indirect, special, incidental, or
+consequential damages of any character arising as a result of this
+License or out of the use or inability to use the Work (including but
+not limited to damages for loss of goodwill, work stoppage, computer
+failure or malfunction, or any and all other commercial damages or
+losses), even if such Contributor has been advised of the possibility
+of such damages.
+
+END OF TERMS AND CONDITIONS
