@@ -99,12 +99,12 @@
 
     <distributionManagement>
         <repository>
-            <id>noesisinformatica.bb.releases</id>
-            <url>dav:https://noesisinformatica@bitbucket.org/noesisinformatica/releaserepo</url>
+            <id>noesisinformatica.releases</id>
+            <url>dav:https://repository-noesisinformatica.forge.cloudbees.com/release/</url>
         </repository>
         <snapshotRepository>
-            <id>noesisinformatica.bb.snapshots</id>
-            <url>dav:https://noesisinformatica@bitbucket.org/noesisinformatica/snapshotrepo</url>
+            <id>noesisinformatica.snapshots</id>
+            <url>dav:https://repository-noesisinformatica.forge.cloudbees.com/snapshot</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
