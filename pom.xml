@@ -295,24 +295,17 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>1.5</version>
+                <version>1.6</version>
                 <configuration>
-                    <licenseResolver>file://${project.build.directory}/license</licenseResolver>
+                    <licenseName>noesis_license</licenseName>
+                    <licenseResolver>classpath://com/noesisinformatica/license</licenseResolver>
+                    <!--<licenseResolver>file://${project.build.directory}/license</licenseResolver>-->
                 </configuration>
                 <executions>
                     <execution>
-                        <id>update-project-license</id>
-                        <goals>
-                            <goal>update-project-license</goal>
-                        </goals>
-                        <phase>process-sources</phase>
-                        <configuration>
-                            <licenseName>noesis_license</licenseName>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>update-file-header</id>
                         <goals>
+                            <goal>update-project-license</goal>
                             <goal>update-file-header</goal>
                         </goals>
                         <phase>process-sources</phase>
@@ -345,6 +338,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.noesisinformatica</groupId>
+                        <artifactId>license</artifactId>
+                        <version>1.1.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -353,16 +353,16 @@
                 <executions>
                     <execution>
                         <id>copy-license-files</id>
-                        <phase>generate-sources</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
                             <encoding>utf-8</encoding>
-                            <outputDirectory>${project.build.directory}/license</outputDirectory>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.basedir}/src/license</directory>
+                                    <directory>${project.build.directory}/generated-sources/license</directory>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>
@@ -370,25 +370,25 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <id>remove-old-artifacts</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>remove-project-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <!-- When true, remove all built artifacts including all versions.
-                                 When false, remove all built artifacts of this project version -->
-                            <removeAll>true</removeAll>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>build-helper-maven-plugin</artifactId>-->
+                <!--<version>1.8</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>remove-old-artifacts</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>remove-project-artifact</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--&lt;!&ndash; When true, remove all built artifacts including all versions.-->
+                                 <!--When false, remove all built artifacts of this project version &ndash;&gt;-->
+                            <!--<removeAll>true</removeAll>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
