@@ -4,7 +4,7 @@
 
     <groupId>com.noesisinformatica</groupId>
     <artifactId>noesisinformatica</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <!-- Organisation Information -->
@@ -34,7 +34,7 @@
         <connection>scm:hg:file://${basedir}</connection>
         <developerConnection>scm:hg:https://noesisinformatica.kilnhg.com/Code/Repositories/Products/Noesis-Org</developerConnection>
         <url>scm:hg:file://${basedir}</url>
-        <tag>1.3.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
