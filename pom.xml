@@ -38,6 +38,13 @@
         <tag>HEAD</tag>
     </scm>
 
+    <licenses>
+        <license>
+            <name>Noesis Informatica License</name>
+            <url>http://noesisinformatica.com/licenses/LICENSE-1.0.txt</url>
+        </license>
+    </licenses>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <buildnumber.plugin.phase>validate</buildnumber.plugin.phase>
