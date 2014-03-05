@@ -1,12 +1,12 @@
 License of Third Party Libraries
 
-   ${projectName} uses a large number of open source libraries. All
+   Noesis Informatica Parent uses a large number of third party libraries. All
    of these libraries are included in the lib folder of the application
-   and are covered by their respective licenses. ${application.name}
+   and are covered by their respective licenses. Noesis Informatica Parent
    license and copyright does not cover these libraries. Please refer to
    the licenses listed in THIRD-PARTY.txt file for appropriate information.
 
-License for ${projectName} - ${project.version}
+License for Noesis Informatica Parent - 1.4.0-SNAPSHOT
 
 1. Definitions.
 
@@ -34,7 +34,7 @@ notice that is included in or attached to the work.
 
 "Software" shall mean the Work and its representation in Source or
 Object forms as described above. This license agreement also refers to
-${projectName} as Software.
+Noesis Informatica Parent as Software.
 
 "Derivative Works" shall mean any work, whether in Source or Object
 form, that is based on (or derived from) the Work and for which the
@@ -50,17 +50,17 @@ This License entitles you to use the Software according to the terms
 of this license. The use of the Software for any other purposes is not allowed
 and will need to be agreed in writing with the Licensor (Noesis
 Informatica Ltd). This License Agreement does not in any way grant you
-any rights over the Intellectual Property of the ${projectName}.
+any rights over the Intellectual Property of the Noesis Informatica Parent.
 You acknowledge that the ownership of the Intellectual Property at all
 times rest with the Licensor (Noesis Informatica Ltd). By using
-${projectName}, You also agree to the following terms:
-  * You may not provide or make ${projectName} available by any
+Noesis Informatica Parent, You also agree to the following terms:
+  * You may not provide or make Noesis Informatica Parent available by any
     means to any third party without prior written consent of the
     Licensor. You undertake to take such steps as are necessary in
-    order to protect ${projectName} against unauthorized use.
+    order to protect Noesis Informatica Parent against unauthorized use.
   * You may not alter, merge, modify, adapt or translate the Software,
     or decompile, reverse engineer, disassemble, or otherwise reduce
-    ${projectName} to a human-perceivable form.
+    Noesis Informatica Parent to a human-perceivable form.
   * You may not sell, rent, lease, sublicense, transfer, resell for
     profit or otherwise distribute the Software or any part thereof.
   * You shall not attempt to extract or download the SNOMED CT content
@@ -68,7 +68,7 @@ ${projectName}, You also agree to the following terms:
     means or methods.
   * You may not modify the Software or create derivative works based
     upon the Software.
-  * You may not reveal or use ${projectName} design features to
+  * You may not reveal or use Noesis Informatica Parent design features to
     create or augment derivative works, directly or indirectly.
   * You may not remove or obscure any copyright and trademark notices
     relating to the Software.
