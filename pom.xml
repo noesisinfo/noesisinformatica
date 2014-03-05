@@ -6,6 +6,7 @@
     <artifactId>noesisinformatica</artifactId>
     <version>1.4.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <name>Noesis Informatica Parent</name>
 
     <!-- Organisation Information -->
     <organization>
@@ -292,6 +293,37 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--
+                Use clean plugin to delete LICENSE.txt file in src folder if it exists.
+                This file is recreated by the license plugin below. This ensures we always
+                have the correct version number for the artefact - since the replacer
+                plugin adds this information.
+            -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <executions>
+                    <execution>
+                        <id>delete-existing-license-file</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <failOnError>false</failOnError>
+                            <filesets>
+                                <fileset>
+                                    <directory>${project.basedir}</directory>
+                                    <includes>
+                                        <include>LICENSE.txt</include>
+                                    </includes>
+                                    <followSymlinks>false</followSymlinks>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
@@ -299,7 +331,6 @@
                 <configuration>
                     <licenseName>noesis_license</licenseName>
                     <licenseResolver>classpath://com/noesisinformatica/license</licenseResolver>
-                    <!--<licenseResolver>file://${project.build.directory}/license</licenseResolver>-->
                 </configuration>
                 <executions>
                     <execution>
@@ -342,9 +373,60 @@
                     <dependency>
                         <groupId>com.noesisinformatica</groupId>
                         <artifactId>license</artifactId>
-                        <version>1.1.0</version>
+                        <version>1.2.0-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.2</version>
+                <executions>
+                    <execution>
+                        <id>update-license-in-base-dir</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                        <configuration>
+                            <ignoreMissingFile>true</ignoreMissingFile>
+                            <file>${project.basedir}/LICENSE.txt</file>
+                            <replacements>
+                                <replacement>
+                                    <token>$PROJECT_NAME$</token>
+                                    <value>${project.name}</value>
+                                </replacement>
+                                <replacement>
+                                    <token>$PROJECT_VERSION$</token>
+                                    <value>${project.version}</value>
+                                </replacement>
+                            </replacements>
+                            <regex>false</regex>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>update-license-in-generated-sources</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                        <configuration>
+                            <ignoreMissingFile>true</ignoreMissingFile>
+                            <file>${project.build.directory}/generated-sources/license/LICENSE.txt</file>
+                            <replacements>
+                                <replacement>
+                                    <token>$PROJECT_NAME$</token>
+                                    <value>${project.name}</value>
+                                </replacement>
+                                <replacement>
+                                    <token>$PROJECT_VERSION$</token>
+                                    <value>${project.version}</value>
+                                </replacement>
+                            </replacements>
+                            <regex>false</regex>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
