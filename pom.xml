@@ -357,6 +357,9 @@
                             <extraExtensions>
                                 <gsp>xml</gsp>
                             </extraExtensions>
+                            <excludes>
+                                <exclude>**/_*Template.gsp</exclude>
+                            </excludes>
                             <!-- Disable add after package, since it makes license appear in middle of groovy classes -->
                             <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
                         </configuration>
