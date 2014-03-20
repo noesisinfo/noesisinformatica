@@ -116,6 +116,19 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <!-- Add Noesis repos, since we need 'license' artefact -->
+        <repository>
+            <id>noesisinformatica.releases</id>
+            <url>https://repository-noesisinformatica.forge.cloudbees.com/release/</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>noesisinformatica.snapshots</id>
+            <url>https://repository-noesisinformatica.forge.cloudbees.com/snapshot</url>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
     </repositories>
 
     <distributionManagement>
