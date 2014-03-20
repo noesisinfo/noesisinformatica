@@ -7,6 +7,11 @@
     <version>1.6.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Noesis Informatica Parent</name>
+    <description>The Organisation POM for all Noesis Informatica projects</description>
+    <url>http://noesisinformatica.com</url>
+    <ciManagement>
+        <url>https://noesisinformatica.ci.cloudbees.com/job/Noesis-Org/</url>
+    </ciManagement>
 
     <!-- Organisation Information -->
     <organization>
@@ -49,6 +54,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <buildnumber.plugin.phase>validate</buildnumber.plugin.phase>
         <application.name>${project.groupId}:${project.artifactId}</application.name>
+        <resources.plugin.version>2.6</resources.plugin.version>
+        <assembly.plugin.version>2.4</assembly.plugin.version>
+        <clean.plugin.version>2.5</clean.plugin.version>
+        <jar.plugin.version>2.4</jar.plugin.version>
+        <deploy.plugin.version>2.8.1</deploy.plugin.version>
+        <javadoc.plugin.version>2.9.1</javadoc.plugin.version>
+        <surefire.plugin.version>2.17</surefire.plugin.version>
+        <release.plugin.version>2.5</release.plugin.version>
     </properties>
 
     <repositories>
@@ -134,7 +147,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.12.4</version>
+                    <version>${surefire.plugin.version}</version>
                     <configuration>
                         <enableAssertions>false</enableAssertions>
                         <!-- increase memory allocation for surefire plugins because JUnits test do not respect
@@ -159,7 +172,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.3.2</version>
+                    <version>${release.plugin.version}</version>
                     <configuration>
                         <tagNameFormat>@{project.version}</tagNameFormat>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
@@ -176,15 +189,65 @@
                         <dependency>
                             <groupId>org.apache.maven.scm</groupId>
                             <artifactId>maven-scm-provider-hg</artifactId>
-                            <version>1.7</version>
+                            <version>1.9</version>
                         </dependency>
                     </dependencies>
                 </plugin>
                 <plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.7</version>
+					<version>${deploy.plugin.version}</version>
     			</plugin>
+                <plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${assembly.plugin.version}</version>
+    			</plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>1.9</version>
+                    <configuration>
+                        <connectionType>developerConnection</connectionType>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${jar.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-changes-plugin</artifactId>
+                    <version>2.9</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${resources.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.3</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.wagon</groupId>
+                            <artifactId>wagon-ssh</artifactId>
+                            <version>2.2</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.5</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -209,7 +272,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
+                <version>${jar.plugin.version}</version>
                 <configuration>
                     <archive>
                         <manifestEntries>
@@ -224,7 +287,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.7</version>
+                <version>${deploy.plugin.version}</version>
             </plugin>
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -308,7 +371,7 @@
             -->
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>2.5</version>
+                <version>${clean.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>delete-existing-license-file</id>
@@ -441,7 +504,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>${resources.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>copy-license-files</id>
@@ -490,7 +553,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.7</version>
+                <version>${javadoc.plugin.version}</version>
                 <configuration>
                     <encoding>utf-8</encoding>
                     <detectLinks>true</detectLinks>
