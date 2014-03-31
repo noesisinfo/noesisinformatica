@@ -51,6 +51,7 @@
     </licenses>
 
     <properties>
+        <author.name>Jay Kola</author.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <buildnumber.plugin.phase>validate</buildnumber.plugin.phase>
         <application.name>${project.groupId}:${project.artifactId}</application.name>
@@ -142,6 +143,16 @@
             <url>https://repository-noesisinformatica.forge.cloudbees.com/snapshot</url>
             <releases><enabled>false</enabled></releases>
             <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>eclipse.virgo.build.bundles.release</id>
+            <name>Eclipse Virgo Build</name>
+            <url>http://build.eclipse.org/rt/virgo/maven/bundles/release</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>com.springsource.repository.bundles.external</id>
+            <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+            <url>http://repository.springsource.com/maven/bundles/external</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -618,6 +629,101 @@
                 <compatibility.level>BACKWARD_COMPATIBLE_IMPLEMENTER</compatibility.level>
                 <strict.semver.conformance>true</strict.semver.conformance>
             </properties>
+        </profile>
+        <profile>
+            <!-- Use mvn clean install -P osgi to generate OSGI bundles -->
+            <id>osgi</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <package.type>bundle</package.type>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!--
+                         | the following instructions build a simple set of public/private classes into an OSGi bundle
+                        -->
+                        <groupId>org.apache.felix</groupId>
+                        <artifactId>maven-bundle-plugin</artifactId>
+                        <version>2.3.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <instructions>
+                                <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                                <!--<Bundle-Version>${project.version}</Bundle-Version>-->
+                                <!-- replace snapshot with timestamp because osgi can not handle snapshots -->
+                                <Bundle-Version>$(replace;${project.version};-SNAPSHOT;.$(tstamp))</Bundle-Version>
+                                <_snapshot>${maven.build.timestamp}</_snapshot>
+                                <!--
+                                 | assume public classes are in the top package, and private classes are under ".internal"
+                                -->
+                                <Export-Package>!${project.groupId}.${project.artifactId}.internal.*, ${project.groupId}.${project.artifactId}.*"</Export-Package>
+                                <!--<Export-Package>!${project.groupId}.${project.artifactId}.internal.*,${project.groupId}.${project.artifactId}.*;version="${project.version}"</Export-Package>-->
+                                <!--<Export-Package>!${bundle.namespace}.internal.*,${bundle.namespace}.*;version="${project.version}"</Export-Package>-->
+                                <!--<Private-Package>${bundle.namespace}.internal.*</Private-Package>-->
+                                <!--
+                                  embed compile/runtime dependencies using path that matches the copied dependency folder
+                                -->
+                                <!--<Embed-Dependency>*;scope=compile|runtime;inline=false</Embed-Dependency>-->
+                                <!--<Embed-Directory>target/dependency</Embed-Directory>-->
+                                <!--<Embed-StripGroup>true</Embed-StripGroup>-->
+                                <Spring-Context>META-INF/spring/bundle-context.xml</Spring-Context>
+                                <Bundle-Blueprint>OSGI-INF/blueprint/blueprint.xml</Bundle-Blueprint>
+                                <!--
+                                 | each module can override these defaults in their osgi.bnd file
+                                -->
+                                <_include>-osgi.bnd</_include>
+                            </instructions>
+                            <!--Tell plugin not to include Maven information in Jar file-->
+                            <archive>
+                                <!--<addMavenDescriptor>false</addMavenDescriptor>-->
+                                <manifestEntries>
+                                    <!--Add custom meta information to bundle-->
+                                    <Bundle-Author>${author.name}</Bundle-Author>
+                                    <Bundle-Build-Number>${changeSet}</Bundle-Build-Number>
+                                    <Bundle-Build-Time>${maven.build.timestamp}</Bundle-Build-Time>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>jar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <package.type>jar</package.type>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.eclipse.virgo.bundlor</groupId>
+                        <artifactId>org.eclipse.virgo.bundlor.maven</artifactId>
+                        <version>1.1.2.RELEASE</version>
+                        <configuration>
+                            <manifestTemplate>
+                                Bundle-ManifestVersion: 2
+                                Bundle-Name: ${project.name}
+                                Bundle-SymbolicName: ${project.artifactId}
+                                Bundle-Version: ${project.version}
+                            </manifestTemplate>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>bundlor</id>
+                                <goals>
+                                    <goal>bundlor</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
