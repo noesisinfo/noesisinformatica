@@ -632,15 +632,23 @@
         </profile>
         <profile>
             <!-- Use mvn clean install -P osgi to generate OSGI bundles -->
+            <!-- Not specifying a profile on commandline makes Maven ignore all other profiles-->
             <id>osgi</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <package.type>bundle</package.type>
-            </properties>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>${jar.plugin.version}</version>
+                        <configuration>
+                            <archive>
+                                <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                            </archive>
+                        </configuration>
+                    </plugin>
                     <plugin>
                         <!--
                          | the following instructions build a simple set of public/private classes into an OSGi bundle
@@ -687,6 +695,15 @@
                                 </manifestEntries>
                             </archive>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <id>generate-bundle-manifest</id>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>manifest</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -694,11 +711,8 @@
         <profile>
             <id>jar</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
-            <properties>
-                <package.type>jar</package.type>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
