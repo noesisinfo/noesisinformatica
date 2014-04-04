@@ -6,7 +6,7 @@ License of Third Party Libraries
    license and copyright does not cover these libraries. Please refer to
    the licenses listed in THIRD-PARTY.txt file for appropriate information.
 
-License for Noesis Informatica Parent - 1.7.0-SNAPSHOT
+License for Noesis Informatica Parent - 1.7.1-SNAPSHOT
 
 1. Definitions.
 
