@@ -678,7 +678,7 @@
                                 <!--<Embed-Directory>target/dependency</Embed-Directory>-->
                                 <!--<Embed-StripGroup>true</Embed-StripGroup>-->
                                 <Spring-Context>META-INF/spring/bundle-context.xml</Spring-Context>
-                                <Bundle-Blueprint>OSGI-INF/blueprint/blueprint.xml</Bundle-Blueprint>
+                                <!--<Bundle-Blueprint>OSGI-INF/blueprint/blueprint.xml</Bundle-Blueprint>-->
                                 <!--
                                  | each module can override these defaults in their osgi.bnd file
                                 -->
