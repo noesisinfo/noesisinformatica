@@ -4,7 +4,7 @@
 
     <groupId>com.noesisinformatica</groupId>
     <artifactId>noesisinformatica</artifactId>
-    <version>1.7.1-SNAPSHOT</version>
+    <version>1.7.1</version>
     <packaging>pom</packaging>
     <name>Noesis Informatica Parent</name>
     <description>The Organisation POM for all Noesis Informatica projects</description>
@@ -40,7 +40,7 @@
         <connection>scm:hg:file://${basedir}</connection>
         <developerConnection>scm:hg:https://noesisinformatica.kilnhg.com/Code/Repositories/Products/Noesis-Org</developerConnection>
         <url>scm:hg:file://${basedir}</url>
-        <tag>HEAD</tag>
+        <tag>1.7.1</tag>
     </scm>
 
     <licenses>
