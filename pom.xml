@@ -66,6 +66,7 @@
         <compiler.plugin.version>3.1</compiler.plugin.version>
         <build.helper.plugin.version>1.8</build.helper.plugin.version>
         <build.number.plugin.version>1.2</build.number.plugin.version>
+        <info.reports.plugin.version>2.7</info.reports.plugin.version>
     </properties>
 
     <repositories>
@@ -567,25 +568,25 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>${build.helper.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>remove-old-artifacts</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>remove-project-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <!-- When true, remove all built artifacts including all versions.
-                                 When false, remove all built artifacts of this project version -->
-                            <removeAll>false</removeAll>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>build-helper-maven-plugin</artifactId>-->
+                <!--<version>${build.helper.plugin.version}</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>remove-old-artifacts</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>remove-project-artifact</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--&lt;!&ndash; When true, remove all built artifacts including all versions.-->
+                                 <!--When false, remove all built artifacts of this project version &ndash;&gt;-->
+                            <!--<removeAll>false</removeAll>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
@@ -609,6 +610,14 @@
                     </docletArtifact>
                     <additionalparam>-views</additionalparam>
                     <useStandardDocletOptions>true</useStandardDocletOptions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${info.reports.plugin.version}</version>
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                 </configuration>
             </plugin>
         </plugins>
